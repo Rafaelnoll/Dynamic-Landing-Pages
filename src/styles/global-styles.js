@@ -1,11 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 
-export const GlobalStyles = createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,900;1,900&family=Open+Sans:wght@300&display=swap');
-    
+export const GlobalStyles = createGlobalStyle`    
     *{
         margin:0;
         padding:0;
+        box-sizing:border-box;
     }
 
     html{
@@ -17,7 +16,7 @@ export const GlobalStyles = createGlobalStyle`
         font-family: ${({ theme }) => theme.font.family.default};
     }
     
-    h1{
+    h1,h2,h3,h4,h5,h6{
         font-family: ${({ theme }) => theme.font.family.secondary};
     }
 `;
