@@ -1,10 +1,11 @@
+import { Heading } from "../../components/Heading";
 import * as Styled from "./styles";
 
-function Home({ theme }) {
+function Home() {
   return (
     <div className="Home">
-      <Styled.Wrapper background="blue">
-        <h1>Hello word!</h1>
+      <Styled.Wrapper>
+        <Heading>O texto que eu quero</Heading>
       </Styled.Wrapper>
     </div>
   );
