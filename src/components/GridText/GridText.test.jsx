@@ -3,7 +3,7 @@ import { GridText } from ".";
 import mock from './mock';
 
 describe("<GridText/>", () => {
-    it("should render grid section", () => {
+    it("should render grid text", () => {
         const { container } = renderTheme(<GridText {...mock} background={undefined} />);
         expect(container.firstChild).toMatchSnapshot();
     });
