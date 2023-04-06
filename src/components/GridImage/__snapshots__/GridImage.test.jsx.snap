@@ -77,11 +77,11 @@ exports[`<GridImage/> should render grid image 1`] = `
       >
         My grid
       </h2>
-      <p
+      <div
         class="c4 c5"
       >
         Atque doloribus nobis lçasudatium esse ui, ut non commidu maxime distinctio veritats unde
-      </p>
+      </div>
       <div
         class="c6"
       >
