@@ -5,12 +5,12 @@ import P from 'prop-types';
 
 export const LogoLink = ({ text, srcImage = '', link }) => {
     return (
-        <Styles.Container href={link}>
-            <Heading size="small" uppercase>
+        <Heading size="small" uppercase>
+            <Styles.Container href={link}>
                 {!!srcImage && <img src={srcImage} alt={text} />}
                 {!srcImage && text}
-            </Heading>
-        </Styles.Container>
+            </Styles.Container>
+        </Heading>
     );
 }
 
