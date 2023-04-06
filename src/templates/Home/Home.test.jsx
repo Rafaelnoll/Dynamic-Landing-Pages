@@ -1,9 +1,9 @@
-import { screen } from "@testing-library/react";
 import Home from ".";
 import { renderTheme } from "../../styles/render-theme";
 
 describe("<HOME/>", () => {
-  it("renders learn react link", () => {
-    renderTheme(<Home />);
+  it("renders the template Home", () => {
+    const { container } = renderTheme(<Home />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
