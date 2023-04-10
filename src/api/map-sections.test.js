@@ -1,4 +1,4 @@
-import { mapSectionTwoColumns, mapSections } from "./map-sections"
+import { mapSectionContent, mapSectionTwoColumns, mapSections } from "./map-sections"
 
 describe('map-sections', () => {
     it('should render predefined section if no data', () => {
@@ -34,5 +34,33 @@ describe('map-sections', () => {
         expect(data.sectionId).toBe("home");
         expect(data.srcImg).toBe("a.svg");
         expect(data.title).toBe("January brings us Firefox 85");
+    })
+
+    it('should map section content if no data', () => {
+        const data = mapSectionContent();
+
+        expect(data.background).toBe(false);
+        expect(data.component).toBe('');
+        expect(data.sectionId).toBe('');
+        expect(data.title).toBe('');
+        expect(data.html).toBe('');
+    })
+
+    it('should map section content to match keys and values required', () => {
+        const data = mapSectionContent({
+            __component: "section.section-content",
+            title: "title1",
+            content: "abc",
+            metadata: {
+              background: false,
+              section_id: "intro",
+            }
+          });
+
+        expect(data.background).toBe(false);
+        expect(data.component).toBe("section.section-content");
+        expect(data.sectionId).toBe("intro");
+        expect(data.title).toBe("title1");
+        expect(data.html).toBe("abc");
     })
 })
