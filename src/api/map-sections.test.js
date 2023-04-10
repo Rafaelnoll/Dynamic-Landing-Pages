@@ -1,4 +1,9 @@
-import { mapSectionContent, mapSectionTwoColumns, mapSections } from "./map-sections"
+import {
+    mapTextGrid,
+    mapSectionContent,
+    mapSectionTwoColumns,
+    mapSections
+} from "./map-sections"
 
 describe('map-sections', () => {
     it('should render predefined section if no data', () => {
@@ -52,15 +57,56 @@ describe('map-sections', () => {
             title: "title1",
             content: "abc",
             metadata: {
-              background: false,
-              section_id: "intro",
+                background: false,
+                section_id: "intro",
             }
-          });
+        });
 
         expect(data.background).toBe(false);
         expect(data.component).toBe("section.section-content");
         expect(data.sectionId).toBe("intro");
         expect(data.title).toBe("title1");
         expect(data.html).toBe("abc");
+    })
+
+    it('should map section Text Grid if no data', () => {
+        const data = mapTextGrid();
+
+        expect(data.background).toBe(false);
+        expect(data.component).toBe('');
+        expect(data.description).toBe('');
+        expect(data.title).toBe('');
+        expect(data.grid).toEqual([]);
+        expect(data.sectionId).toBe('');
+    })
+
+    it('should map section Text Grid to match keys and values required', () => {
+        const data = mapTextGrid({
+            __component: "section.section-grid",
+            description: "123",
+            title: "title123",
+            text_grid: [
+                {
+                    title: "Teste1",
+                    description: "abc",
+                },
+                {
+                    title: "Teste2",
+                    description: "def",
+                },
+            ],
+            metadata: {
+                background: true,
+                section_id: "grid-one",
+            }
+        });
+
+        expect(data.component).toBe("section.section-grid");
+        expect(data.description).toBe('123');
+        expect(data.title).toBe('title123');
+        expect(data.grid[0].title).toBe('Teste1');
+        expect(data.grid[0].description).toBe('abc');
+        expect(data.background).toBe(true);
+        expect(data.sectionId).toBe('grid-one');
     })
 })
