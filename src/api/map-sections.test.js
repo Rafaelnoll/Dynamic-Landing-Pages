@@ -6,10 +6,45 @@ import {
     mapImageGrid
 } from "./map-sections"
 
+import pagesMock from './dados.json';
+
 describe('map-sections', () => {
     it('should render predefined section if no data', () => {
-        const data = mapSections();
+        const data = mapSections(undefined);
         expect(data).toEqual([]);
+    })
+
+    it('should render sections with correct data', () => {
+        const data = mapSections(pagesMock[0].sections);
+        expect(data[0].component).toBe('section.section-two-columns');
+    })
+
+    it('should test with invalid data', () => {
+        const withNoTextOrImageGrid = mapSections([{
+            __component: 'section.section-grid',
+        }]);
+
+        const withNoComponent = mapSections([{}]);
+
+        expect(withNoTextOrImageGrid).toEqual([{
+            __component: 'section.section-grid',
+        }])
+        expect(withNoComponent).toEqual([{}]);
+    })
+
+    it('should test section Grid with no text_grid or image_grid', () => {
+        const withNoTextGridOrImageGrid = mapSections([
+            {
+                __component: 'section.section-grid',
+                text_grid: [{}],
+            },
+            {
+                __component: 'section.section-grid',
+                image_grid: [{}],
+            }
+        ]);
+
+        expect(withNoTextGridOrImageGrid.length).toBe(2);
     })
 
     it('should map section two columns if no data', () => {
