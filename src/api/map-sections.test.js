@@ -2,7 +2,8 @@ import {
     mapTextGrid,
     mapSectionContent,
     mapSectionTwoColumns,
-    mapSections
+    mapSections,
+    mapImageGrid
 } from "./map-sections"
 
 describe('map-sections', () => {
@@ -73,7 +74,7 @@ describe('map-sections', () => {
         const data = mapTextGrid();
 
         expect(data.background).toBe(false);
-        expect(data.component).toBe('');
+        expect(data.component).toBe('section.section-grid-text');
         expect(data.description).toBe('');
         expect(data.title).toBe('');
         expect(data.grid).toEqual([]);
@@ -82,7 +83,6 @@ describe('map-sections', () => {
 
     it('should map section Text Grid to match keys and values required', () => {
         const data = mapTextGrid({
-            __component: "section.section-grid",
             description: "123",
             title: "title123",
             text_grid: [
@@ -101,12 +101,56 @@ describe('map-sections', () => {
             }
         });
 
-        expect(data.component).toBe("section.section-grid");
+        expect(data.component).toBe("section.section-grid-text");
         expect(data.description).toBe('123');
         expect(data.title).toBe('title123');
         expect(data.grid[0].title).toBe('Teste1');
         expect(data.grid[0].description).toBe('abc');
         expect(data.background).toBe(true);
         expect(data.sectionId).toBe('grid-one');
+    })
+
+    it('should map section Image Grid if no data', () => {
+        const data = mapImageGrid();
+
+        expect(data.background).toBe(false);
+        expect(data.component).toBe('section.section-grid-image');
+        expect(data.description).toBe('');
+        expect(data.title).toBe('');
+        expect(data.grid).toEqual([]);
+        expect(data.sectionId).toBe('');
+    })
+
+    it('should map section Image Grid to match keys and values required', () => {
+        const data = mapImageGrid({
+            description: "abcd",
+            title: "Gallery",
+            image_grid: [
+                {
+                    image: {
+                        url: "a.jpg",
+                        alternativeText: 'alt1',
+                    },
+                },
+                {
+                    image: {
+                        url: "b.jpg",
+                        alternativeText: 'alt2',
+                    },
+                },
+            ],
+            metadata: {
+                background: true,
+                section_id: "gallery1",
+            },
+        });
+
+        expect(data.component).toBe("section.section-grid-image");
+        expect(data.title).toBe("Gallery");
+        expect(data.description).toBe("abcd");
+        expect(data.background).toBe(true);
+        expect(data.sectionId).toBe('gallery1');
+        expect(data.grid[0].srcImg).toBe('a.jpg');
+        expect(data.grid[0].altText).toBe('alt1');
     })
 })
