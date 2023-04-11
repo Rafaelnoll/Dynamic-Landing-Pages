@@ -59,8 +59,8 @@ describe('map-sections', () => {
     it('should map section two columns to match keys and values required', () => {
         const data = mapSectionTwoColumns({
             __component: "section.section-two-columns",
-            title: "January brings us Firefox 85",
-            description: "To wrap up January, we are proud to bring you the release of Firefox 85. In this version we are bringing you support for the :focus-visible pseudo-class in CSS and associated devtools, and the complete removal of Flash support from Firefox.",
+            title: "title1",
+            description: "abc123",
             metadata: {
                 background: true,
                 section_id: "home",
@@ -74,7 +74,8 @@ describe('map-sections', () => {
         expect(data.component).toBe("section.section-two-columns");
         expect(data.sectionId).toBe("home");
         expect(data.srcImg).toBe("a.svg");
-        expect(data.title).toBe("January brings us Firefox 85");
+        expect(data.title).toBe("title1");
+        expect(data.text).toBe("abc123");
     })
 
     it('should map section content if no data', () => {
