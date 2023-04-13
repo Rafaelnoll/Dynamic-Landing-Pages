@@ -36,7 +36,8 @@
         ],
         "rules": {
           "import/no-anonymous-default-export": "off",
-          "testing-library/no-node-access": "off"
+          "testing-library/no-node-access": "off",
+          "no-restricted-globals": "off"
         }
       }
     ]
