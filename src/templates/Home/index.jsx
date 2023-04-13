@@ -1,11 +1,14 @@
-import { useState } from "react";
-import { Base } from "../Base";
-import mockBase from '../Base/mock';
-import * as Styled from './styles';
+import { useState, useEffect } from "react";
 import { mapData } from "../../api/map-data";
-import { useEffect } from "react";
+
 import { PageNotFound } from "../PageNotFound";
 import { Loading } from "../Loading";
+
+import { Base } from "../Base";
+import { GridTwoColumn } from '../../components/GridTwoColumn';
+import { GridContent } from "../../components/GridContent";
+import { GridText } from "../../components/GridText";
+import { GridImage } from "../../components/GridImage";
 
 function Home() {
   const [data, setData] = useState([]);
@@ -38,10 +41,37 @@ function Home() {
     return <Loading />
   }
 
+  const { menu, sections, footerHtml, slug } = data;
+  const { links, text, link, srcImg } = menu;
   return (
-    <Styled.Wrapper>
-      <Base {...mockBase} />
-    </Styled.Wrapper>
+    <Base
+      links={links}
+      footerHtml={footerHtml}
+      logoData={{ text, link, srcImg }}
+    >
+      {sections.map((section, index) => {
+        const { component } = section;
+        const key = `${slug}-${index}`;
+
+        if (component === 'section.section-two-columns') {
+          return <GridTwoColumn {...section} key={key} />
+        }
+
+        if (component === 'section.section-content') {
+          return <GridContent {...section} key={key} />
+        }
+
+        if (component === 'section.section-grid-text') {
+          return <GridText {...section} key={key} />
+        }
+
+        if (component === 'section.section-grid-image') {
+          return <GridImage {...section} key={key} />
+        }
+
+        return null;
+      })}
+    </Base>
   )
 }
 
