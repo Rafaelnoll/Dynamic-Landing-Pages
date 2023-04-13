@@ -3,12 +3,12 @@ import * as Styles from './styles';
 import { Heading } from '../Heading';
 import P from 'prop-types';
 
-export const LogoLink = ({ text, srcImage = '', link }) => {
+export const LogoLink = ({ text, srcImg = '', link }) => {
     return (
         <Heading size="small" uppercase>
             <Styles.Container href={link}>
-                {!!srcImage && <img src={srcImage} alt={text} />}
-                {!srcImage && text}
+                {!!srcImg && <img src={srcImg} alt={text} />}
+                {!srcImg && text}
             </Styles.Container>
         </Heading>
     );
@@ -16,6 +16,6 @@ export const LogoLink = ({ text, srcImage = '', link }) => {
 
 LogoLink.propTypes = {
     text: P.string.isRequired,
-    srcImage: P.string,
+    srcImg: P.string,
     link: P.string.isRequired,
 }

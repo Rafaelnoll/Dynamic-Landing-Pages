@@ -6,7 +6,7 @@ export const Container = styled.nav`
         flex-flow: row wrap;
 
         @media ${theme.media.ltmedium}{
-           flex-direction: column;
+           flex-flow: column wrap;
            align-content: center;
         }
     `}
