@@ -6,7 +6,7 @@ import {
     mapImageGrid
 } from "./map-sections"
 
-import pagesMock from './dados.json';
+import pageMock from './dados.json';
 
 describe('map-sections', () => {
     it('should render predefined section if no data', () => {
@@ -15,7 +15,7 @@ describe('map-sections', () => {
     })
 
     it('should render sections with correct data', () => {
-        const data = mapSections(pagesMock[0].sections);
+        const data = mapSections(pageMock.sections);
         expect(data[0].component).toBe('section.section-two-columns');
     })
 
@@ -28,7 +28,7 @@ describe('map-sections', () => {
 
         expect(withNoTextOrImageGrid).toEqual([{
             __component: 'section.section-grid',
-        }])
+        }]);
         expect(withNoComponent).toEqual([{}]);
     })
 
@@ -36,11 +36,11 @@ describe('map-sections', () => {
         const withNoTextGridOrImageGrid = mapSections([
             {
                 __component: 'section.section-grid',
-                text_grid: [{}],
+                text_grid: [],
             },
             {
                 __component: 'section.section-grid',
-                image_grid: [{}],
+                image_grid: [],
             }
         ]);
 
@@ -66,7 +66,11 @@ describe('map-sections', () => {
                 section_id: "home",
             },
             image: {
-                url: "a.svg",
+                data: {
+                    attributes: {
+                        url: "a.svg",
+                    }
+                }
             }
         });
 
@@ -163,16 +167,28 @@ describe('map-sections', () => {
             title: "Gallery",
             image_grid: [
                 {
-                    image: {
-                        url: "a.jpg",
-                        alternativeText: 'alt1',
-                    },
+                    images: {
+                        data: [
+                            {
+                                attributes: {
+                                    url: "a.jpg",
+                                    alternativeText: 'alt1',
+                                }
+                            },
+                        ]
+                    }
                 },
                 {
-                    image: {
-                        url: "b.jpg",
-                        alternativeText: 'alt2',
-                    },
+                    images: {
+                        data: [
+                            {
+                                attributes: {
+                                    url: "a.jpg",
+                                    alternativeText: 'alt1',
+                                }
+                            },
+                        ]
+                    }
                 },
             ],
             metadata: {

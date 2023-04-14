@@ -47,6 +47,7 @@ exports[`<GridImage/> should render grid image 1`] = `
 
 .c1 {
   max-width: 120rem;
+  width: 100%;
   margin: 0 auto;
   padding: 4.0rem;
 }
@@ -58,6 +59,12 @@ exports[`<GridImage/> should render grid image 1`] = `
 }
 
 @media (max-width:768px) {
+  .c6 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width:768px) {
   .c3 {
     font-size: 4.0rem;
   }
@@ -65,6 +72,7 @@ exports[`<GridImage/> should render grid image 1`] = `
 
 <div
   class="c0"
+  id=""
 >
   <div
     class="c1"

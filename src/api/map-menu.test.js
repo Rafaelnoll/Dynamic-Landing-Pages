@@ -28,7 +28,11 @@ describe('map-menu', () => {
                 },
             ],
             logo: {
-                url: "a.svg",
+                data: {
+                    attributes: {
+                        url: "a.svg",
+                    }
+                }
             }
         });
         expect(menu.newTab).toBe(false);
@@ -44,7 +48,7 @@ describe('map-menu', () => {
         const links = mapMenuLinks();
         expect(links).toEqual([]);
     });
-    
+
     it('should map links if links passed', () => {
         const links = mapMenuLinks([
             {

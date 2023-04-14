@@ -63,6 +63,7 @@ exports[`<GridText/> should render grid text 1`] = `
 
 .c1 {
   max-width: 120rem;
+  width: 100%;
   margin: 0 auto;
   padding: 4.0rem;
 }
@@ -81,6 +82,7 @@ exports[`<GridText/> should render grid text 1`] = `
 
 <div
   class="c0"
+  id=""
 >
   <div
     class="c1"

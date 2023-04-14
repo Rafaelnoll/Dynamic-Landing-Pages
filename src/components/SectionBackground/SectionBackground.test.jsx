@@ -22,4 +22,13 @@ describe('<SectionBackground/>', () => {
         expect(screen.getByRole('heading')).toBeInTheDocument();
         expect(container).toMatchSnapshot();
     })
+
+    it('should sectionBackground have the passed sectionId', () => {
+        const { container } = renderTheme(
+            <SectionBackground sectionId="id1">
+                <h1>Children</h1>
+            </SectionBackground>
+        );
+        expect(container.firstChild).toHaveAttribute('id', 'id1');
+    })
 });
