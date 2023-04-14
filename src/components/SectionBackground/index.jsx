@@ -3,9 +3,13 @@ import * as Styles from './styles';
 import P from 'prop-types';
 import { SectionContainer } from "../SectionContainer";
 
-export const SectionBackground = ({ children, background = false }) => {
+const randonId = () => `id-${Math.random() * 10000}`.replace(/[^a-z0-9-_]/gi);
+
+export const SectionBackground = ({ children, background = false, sectionId = '' }) => {
+    const id = sectionId ? sectionId : randonId();
+
     return (
-        <Styles.Container background={background}>
+        <Styles.Container background={background} id={id}>
             <SectionContainer>
                 {children}
             </SectionContainer>
@@ -14,6 +18,7 @@ export const SectionBackground = ({ children, background = false }) => {
 }
 
 SectionBackground.propTypes = {
-    children: P.node,
+    children: P.node.isRequired,
     background: P.bool,
+    sectionId: P.string,
 }

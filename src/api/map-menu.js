@@ -4,7 +4,6 @@ export const mapMenu = (menuData = {}) => {
         logo_text: text = '',
         logo_link: link = '',
     } = menuData;
-    console.log(menuData);
 
     const links = menuData.links || menuData.menu_links || menuData.menu || [];
     const srcImg = menuData?.logo?.data?.attributes?.url || '';
