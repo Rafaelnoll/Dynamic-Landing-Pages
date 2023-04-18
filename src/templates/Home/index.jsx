@@ -11,17 +11,19 @@ import { GridText } from "../../components/GridText";
 import { GridImage } from "../../components/GridImage";
 import { useLocation } from "react-router-dom";
 
+import config from "../../config";
+
 function Home() {
   const [data, setData] = useState([]);
   const location = useLocation();
 
   useEffect(() => {
     const pathName = location.pathname.replace(/[^a-z0-9-_]/gi, '');
-    const slug = pathName ? pathName : 'landing-page';
+    const slug = pathName ? pathName : config.defaultSlug;
 
     const loadData = async () => {
       try {
-        const data = await fetch(`http://localhost:1337/api/pages/?filters[slug]=${slug}&populate=deep`)
+        const data = await fetch(config.url + `${slug}&populate=deep`)
         const json = await data.json();
         const { attributes } = json.data[0];
         const pageData = mapData([attributes]);
@@ -33,6 +35,22 @@ function Home() {
 
     loadData();
   }, [location.pathname]);
+
+  useEffect(() => {
+
+    if (data === undefined) {
+      document.title = "Error 404";
+    }
+
+    if (data && !data.slug) {
+      document.title = "Carregando...";
+    }
+
+    if (data && data.title) {
+      document.title = data.title;
+    }
+
+  }, [data])
 
   if (data === undefined) {
     return <PageNotFound />
